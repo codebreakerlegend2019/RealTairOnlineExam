@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="RealTairOnlineExam.Views.CoinsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:lottie="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+    xmlns:prism="http://prismlibrary.com"
+    xmlns:sk="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
+    Title="{Binding Title}"
+    prism:ViewModelLocator.AutowireViewModel="True">
+    <Grid RowDefinitions="Auto,*">
+        <Entry
+            Margin="10"
+            ClearButtonVisibility="WhileEditing"
+            IsEnabled="{Binding IsSearchBoxEnable}"
+            Placeholder="Search"
+            Text="{Binding SearchKey}" />
+        <RefreshView
+            Grid.Row="1"
+            Command="{Binding ReloadCommand}"
+            IsRefreshing="{Binding IsRefreshing}">
+            <CollectionView
+                x:Name="CollectionV"
+                ItemsSource="{Binding Coins}"
+                SelectedItem="{Binding SelectedCoin}"
+                SelectionChangedCommand="{Binding CoinSelectionChangeCommand}"
+                SelectionMode="Single">
+                <CollectionView.EmptyView>
+                    <StackLayout IsVisible="{Binding IsEmpty}">
+                        <Label
+                            FontAttributes="Bold"
+                            FontFamily="Roboto"
+                            FontSize="Medium"
+                            HorizontalOptions="CenterAndExpand"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding EmptyText}" />
+                        <lottie:AnimationView
+                            Animation="empty-box.json"
+                            AutoPlay="True"
+                            HeightRequest="150"
+                            HorizontalOptions="Center"
+                            IsVisible="True"
+                            Loop="True"
+                            WidthRequest="150" />
+                    </StackLayout>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame
+                                Margin="10"
+                                Padding="10"
+                                sk:Skeleton.Animation="{sk:DefaultAnimation Fade}"
+                                sk:Skeleton.BackgroundColor="#c6c6c5"
+                                sk:Skeleton.IsBusy="{Binding BindingContext.IsDataStillLoading, Source={x:Reference CollectionV}}"
+                                BackgroundColor="#B0BEC5"
+                                CornerRadius="15">
+                                <Grid ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto,Auto">
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        sk:Skeleton.Animation="{sk:DefaultAnimation Fade}"
+                                        sk:Skeleton.BackgroundColor="#c6c6c5"
+                                        sk:Skeleton.IsBusy="{Binding BindingContext.IsDataStillLoading, Source={x:Reference CollectionV}}"
+                                        FontAttributes="Bold"
+                                        FontFamily="Roboto"
+                                        FontSize="Medium"
+                                        Text="Name:" />
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        sk:Skeleton.Animation="{sk:DefaultAnimation Fade}"
+                                        sk:Skeleton.BackgroundColor="#c6c6c5"
+                                        sk:Skeleton.IsBusy="{Binding BindingContext.IsDataStillLoading, Source={x:Reference CollectionV}}"
+                                        FontFamily="Roboto"
+                                        FontSize="Medium"
+                                        Text="{Binding Name}" />
+                                </Grid>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealTairOnlineExam", "RealTairOnlineExam\RealTairOnlineExam.csproj", "{A76F5959-5177-46B1-ACED-62333EB928CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealTairOnlineExam.Android", "RealTairOnlineExam.Android\RealTairOnlineExam.Android.csproj", "{5BFF5DDE-5CCE-46EB-AC22-87CDA83D13C7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A76F5959-5177-46B1-ACED-62333EB928CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A76F5959-5177-46B1-ACED-62333EB928CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A76F5959-5177-46B1-ACED-62333EB928CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A76F5959-5177-46B1-ACED-62333EB928CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BFF5DDE-5CCE-46EB-AC22-87CDA83D13C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BFF5DDE-5CCE-46EB-AC22-87CDA83D13C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BFF5DDE-5CCE-46EB-AC22-87CDA83D13C7}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{5BFF5DDE-5CCE-46EB-AC22-87CDA83D13C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BFF5DDE-5CCE-46EB-AC22-87CDA83D13C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BFF5DDE-5CCE-46EB-AC22-87CDA83D13C7}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C8681107-EA26-4B98-9100-5837B2B4D1D2}
+	EndGlobalSection
+EndGlobal

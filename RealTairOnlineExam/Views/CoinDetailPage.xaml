@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="RealTairOnlineExam.Views.CoinDetailPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:RealTairOnlineExam.Converters"
+    xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+    xmlns:forms1="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:prism="http://prismlibrary.com"
+    xmlns:sk="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
+    Title="{Binding CoinName}"
+    prism:ViewModelLocator.AutowireViewModel="True">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:InverseBooleanConverter x:Key="inverseBooleanConverter" />
+            <converters:StringEmptyToDefaultConverter x:Key="StringEmptyToDefaultConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <Grid Margin="20" RowDefinitions="Auto, Auto">
+            <StackLayout IsVisible="{Binding IsNotFound}">
+                <Label
+                    FontAttributes="Bold"
+                    FontFamily="Roboto"
+                    FontSize="Medium"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Something went wrong, Coin not found" />
+                <forms:AnimationView
+                    Grid.Row="1"
+                    Animation="empty-box.json"
+                    AutoPlay="True"
+                    HeightRequest="150"
+                    HorizontalOptions="Center"
+                    IsVisible="True"
+                    Loop="True"
+                    WidthRequest="150" />
+            </StackLayout>
+            <StackLayout IsVisible="{Binding IsNotFound, Converter={StaticResource inverseBooleanConverter}}" VerticalOptions="FillAndExpand">
+                <Frame>
+                    <Grid RowDefinitions="250,*,*,*,*,*">
+                        <forms1:CachedImage
+                            sk:Skeleton.Animation="{sk:DefaultAnimation Fade}"
+                            sk:Skeleton.BackgroundColor="#c6c6c5"
+                            sk:Skeleton.IsBusy="{Binding IsDataStillLoading}"
+                            Aspect="Fill"
+                            BitmapOptimizations="False"
+                            DownsampleToViewSize="True"
+                            ErrorPlaceholder="ic_defaultavatar.png"
+                            HeightRequest="250"
+                            LoadingDelay="0"
+                            LoadingPlaceholder="ic_imageloader.gif"
+                            RetryCount="3"
+                            RetryDelay="0"
+                            Source="{Binding Coin.Image.Large}" />
+                        <Label
+                            Grid.Row="1"
+                            sk:Skeleton.Animation="{sk:DefaultAnimation Fade}"
+                            sk:Skeleton.BackgroundColor="#c6c6c5"
+                            sk:Skeleton.IsBusy="{Binding IsDataStillLoading}"
+                            LineBreakMode="WordWrap">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span FontAttributes="Bold" Text="Name: " />
+                                    <Span
+                                        FontAttributes="Italic"
+                                        FontSize="Small"
+                                        Text="{Binding Coin.Name}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label
+                            Grid.Row="2"
+                            sk:Skeleton.Animation="{sk:DefaultAnimation Fade}"
+                            sk:Skeleton.BackgroundColor="#c6c6c5"
+                            sk:Skeleton.IsBusy="{Binding IsDataStillLoading}"
+                            LineBreakMode="WordWrap">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span FontAttributes="Bold" Text="Symbol: " />
+                                    <Span
+                                        FontAttributes="Italic"
+                                        FontSize="Small"
+                                        Text="{Binding Coin.Symbol}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label
+                            Grid.Row="3"
+                            sk:Skeleton.Animation="{sk:DefaultAnimation Fade}"
+                            sk:Skeleton.BackgroundColor="#c6c6c5"
+                            sk:Skeleton.IsBusy="{Binding IsDataStillLoading}"
+                            LineBreakMode="WordWrap">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span FontAttributes="Bold" Text="Current Price (USD): " />
+                                    <Span
+                                        FontAttributes="Italic"
+                                        FontSize="Small"
+                                        Text="{Binding Coin.Market_Data.Current_Price.Usd}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label
+                            Grid.Row="4"
+                            sk:Skeleton.Animation="{sk:DefaultAnimation Fade}"
+                            sk:Skeleton.BackgroundColor="#c6c6c5"
+                            sk:Skeleton.IsBusy="{Binding IsDataStillLoading}"
+                            FontAttributes="Bold"
+                            Text="Description:" />
+                        <Label
+                            Grid.Row="5"
+                            sk:Skeleton.Animation="{sk:DefaultAnimation Fade}"
+                            sk:Skeleton.BackgroundColor="#c6c6c5"
+                            sk:Skeleton.IsBusy="{Binding IsDataStillLoading}"
+                            Text="{Binding Coin.Description.En}"
+                            VerticalOptions="FillAndExpand" />
+                    </Grid>
+                </Frame>
+            </StackLayout>
+        </Grid>
+    </ScrollView>
+
+
+</ContentPage>
